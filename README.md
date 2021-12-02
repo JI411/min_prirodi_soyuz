@@ -1,3 +1,4 @@
+# Tiger & Leopards & Princess Detection in The Wild
 Создано командой "Союз" во время участия в [хакатоне](https://hacks-ai.ru/hakaton/samara).
 * Фронтенд решение реализован на фреймворке aiohttp с шаблонизатором jinja
 * Скрипт по обработке модели находится в папке /system/ajax/ajax.py код классификации изображений на основе предобученной модели efficientNetB7
