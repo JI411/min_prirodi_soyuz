@@ -27,7 +27,7 @@ def image_upload_ajax(SITE):
     image_file_name = SITE.post['image'].filename.lower()
 
     # Сохраняем 'jpg' файл
-    with open('files/source/' + image_file_name, 'wb') as f:
+    with open(f'files/source/{image_file_name}', 'wb') as f:
         f.write(image_file)
 
     # Выделяем имя файла
@@ -73,24 +73,21 @@ def image_processing_ajax(SITE):
     predict = decode_predictions(y)
 
     predict_list = []
-    i = 0
-    for pred in predict:  # Проходим по изображениям
-      result_list = []
-      for p in pred:  # Проходим по предсказаниям изображения (по умолчанию 5)
-        source_path = SOURCE_DIR + name_list[i]
-        if p[1] == 'tiger' and p[2] > TRESHOLD:
-          result_path = TIGER_DIR + name_list[i]
-          shutil.move(source_path, result_path)
-          result_list.append('Тигр')
-          print(name_list[i], 'Тигр')
-        if p[1] == 'leopard' and p[2] > TRESHOLD:
-          result_path = LEOPARD_DIR + name_list[i]
-          shutil.move(source_path, result_path)
-          result_list.append('Леопард')
-          print(name_list[i], 'Леопард')
-      predict_list.append(", ".join(result_list))
-      i += 1
-      
+    for i, pred in enumerate(predict):  # Проходим по изображениям
+        result_list = []
+        for p in pred:  # Проходим по предсказаниям изображения (по умолчанию 5)
+          source_path = SOURCE_DIR + name_list[i]
+          if p[1] == 'tiger' and p[2] > TRESHOLD:
+            result_path = TIGER_DIR + name_list[i]
+            shutil.move(source_path, result_path)
+            result_list.append('Тигр')
+            print(name_list[i], 'Тигр')
+          if p[1] == 'leopard' and p[2] > TRESHOLD:
+            result_path = LEOPARD_DIR + name_list[i]
+            shutil.move(source_path, result_path)
+            result_list.append('Леопард')
+            print(name_list[i], 'Леопард')
+        predict_list.append(", ".join(result_list))
     image_source_delete(SITE)  # Удаляем файлы из папки source
 
     answer = {'answer': 'success'}
@@ -102,9 +99,9 @@ def image_source_delete(SITE):
     SOURCE_DIR = 'files/source'
 
     for file_name in os.listdir(SOURCE_DIR):
-      path = SOURCE_DIR + '/' + file_name
-      if os.path.isfile(path):
-        os.remove(path)
+        path = f'{SOURCE_DIR}/{file_name}'
+        if os.path.isfile(path):
+          os.remove(path)
 
     answer = {'answer': 'success'}
     return {'ajax': json.dumps(answer)}

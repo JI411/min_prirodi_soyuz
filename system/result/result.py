@@ -22,7 +22,7 @@ def result(SITE):
 
     leopards_html = ''
     for file_name in sorted(os.listdir(LEOPARD_DIR)):
-        name = file_name if len(file_name) < 20 else file_name[:20] + '...'
+        name = file_name if len(file_name) < 20 else f'{file_name[:20]}...'
         leopards_html +=  '<div class="item_wrap">'
         leopards_html +=      '<img class="item_image" src="/files/result/leopard/' + file_name + '">'
         leopards_html +=      '<div class="item_name">' + name + '</div>'

@@ -17,7 +17,7 @@ def object_detection_upload_ajax(SITE):
     image_file_name = SITE.post['image'].filename.lower()
 
     # Сохраняем 'jpg' файл
-    with open('files/object_detection_source/' + image_file_name, 'wb') as f:
+    with open(f'files/object_detection_source/{image_file_name}', 'wb') as f:
         f.write(image_file)
 
     # Выделяем имя файла
@@ -80,7 +80,7 @@ def object_detection_source_delete(SITE):
     SOURCE_DIR = 'files/object_detection_source'
 
     for file_name in os.listdir(SOURCE_DIR):
-        path = SOURCE_DIR + '/' + file_name
+        path = f'{SOURCE_DIR}/{file_name}'
         if os.path.isfile(path):
             os.remove(path)
 
