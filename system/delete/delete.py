@@ -22,11 +22,9 @@ def delete(SITE):
     ]
 
     for current_dir in dir_list:
-      for file_name in os.listdir(current_dir):
-        path = current_dir + '/' + file_name
-        if os.path.isfile(path):
-          os.remove(path)
+        for file_name in os.listdir(current_dir):
+            path = f'{current_dir}/{file_name}'
+            if os.path.isfile(path):
+              os.remove(path)
 
-    SITE.content = f'''
-        <h1>Все файлы удалены</h1>
-    '''
+    SITE.content = '\x1f        <h1>Все файлы удалены</h1>\x1f    '

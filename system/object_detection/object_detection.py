@@ -26,7 +26,7 @@ def object_detection(SITE):
     # Принцесса
     princess_html = ''
     for file_name in sorted(os.listdir(PRINCESS_DIR)):
-        name = file_name if len(file_name) < 20 else file_name[:20] + '...'
+        name = file_name if len(file_name) < 20 else f'{file_name[:20]}...'
         princess_html +=  '<div class="item_wrap">'
         princess_html +=      '<img class="item_image" src="/files/object_detection_result/princess/' + file_name + '">'
         princess_html +=      '<div class="item_name">' + name + '</div>'
@@ -57,4 +57,4 @@ def object_detection(SITE):
         <div class="object_detection_separator"></div>
         <h2>Леопарды</h2>
         <div id="leopards_container" class="dan_flex_row_start">{leopards_html}</div>
-    '''
+    SITE.content = f'''

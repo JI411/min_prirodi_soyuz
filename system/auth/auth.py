@@ -18,14 +18,9 @@ def auth(SITE):
                 print('Проверка пароля прошла успешно!')
 
                 SITE.session['auth'] = time.time()
-                return {'redirect': '/system/'}
             else:
                 print('Проверка пароля прошла НЕ успешно!')
-                return {'redirect': '/system/'}
-        else:
-            return {'redirect': '/system/'}
-
-
+        return {'redirect': '/system/'}
     # Авторизация для администратора
     if SITE.auth == 1:
         return
